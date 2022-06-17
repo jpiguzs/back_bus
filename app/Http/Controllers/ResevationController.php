@@ -29,11 +29,10 @@ class ResevationController extends Controller
         })->where(
             function($query) use ($request){
                $routes_ids = isset($request->routes_ids) ?  json_decode($request->routes_ids) : null;
-               if(is_null($routes_ids)){
-                return;
-               } else{
-                $query->whereIn('routes_id', $routes_ids);
-               }
+               if(!is_null($routes_ids)){
+                 return $query->whereIn('route_id', $routes_ids);
+               } 
+               return;
             }
         )->get();
         return response()->json($reservations, 200 );

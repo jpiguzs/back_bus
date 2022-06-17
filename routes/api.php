@@ -13,21 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Si la capacidad de la ruta no está completamente ocupada.
 Route::group([
-    'prefix' => 'routes'
+    'prefix' => 'services'
 ], function(){
-    Route::get('/', 'RouteController@Index');
+    Route::get('/', 'ServicesController@GetAvailabilityByRouteId');
 });
-Route::group([
-    'prefix' => 'users'
-], function(){
-    Route::get('/reservations', 'UserController@UserReservations');
-});
+// Días del calendario que el usuario posee reservados, los días reservados pueden
+// conseguirse en formato de rango como tambien días sueltos
 Route::group([
     'prefix' => 'reservations'
 ], function(){
-    Route::get('/get_by_user_id/{user_id}', 'ResevationController@GetReservationsByUserId');
+    Route::get('/{user_id}', 'ResevationController@GetReservationsByUserId');
+});
+// Mostrar los días de calendario no disponibles
+Route::group([
+    'prefix' => 'disabled_days'
+], function(){
+    Route::get('/', 'CalendarDaysDisabledController@GetDaysByRouteId');
 });

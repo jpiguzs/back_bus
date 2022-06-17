@@ -22,11 +22,11 @@ class CreateServicesTable extends Migration
             $table->string('track_id')->nullable();
             $table->string("name")->nullable();
             $table->string("notes")->nullable();
-            $table->timestamp("timestamp");
+            $table->timestamp("timestamp")->nullable();
 		    $table->string("arrival_address");
-		    $table->timestamp("arrival_timestamp");
+		    $table->timestamp("arrival_timestamp")->nullable();
             $table->string("departure_address");
-            $table->timestamp("departure_timestamp");
+            $table->timestamp("departure_timestamp")->nullable();
             $table->integer("capacity");
             $table->integer("confirmed_pax_count");
 		    $table->timestamp("reported_departure_timestamp")->nullable();
@@ -38,8 +38,8 @@ class CreateServicesTable extends Migration
             $table->string("status_info");
             $table->integer("reprocess_status");
             $table->integer("return");
-            $table->timestamp("created");
-            $table->timestamp("modified");
+            $table->timestamp("created")->nullable();
+            $table->timestamp("modified")->nullable();
             $table->string("synchronized_downstream")->nullable();
             $table->string("synchronized_upstream")->nullable();
             $table->integer("province_id");

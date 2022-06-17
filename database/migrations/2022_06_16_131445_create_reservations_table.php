@@ -21,8 +21,8 @@ class CreateReservationsTable extends Migration
             $table->foreign('user_plan_id')->references('id')->on('user_plans');
             $table->foreign("route_id")->references('id')->on('routes');
             $table->integer('track_id')->nullable();
-            $table->timestamp('reservation_start');
-            $table->timestamp('reservation_end');
+            $table->timestamp('reservation_start')->nullable();
+            $table->timestamp('reservation_end')->nullable();
             $table->integer("route_stop_origin_id");
             $table->integer('route_stop_destination_id');
             $table->softDeletes();

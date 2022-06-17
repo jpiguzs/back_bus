@@ -19,8 +19,8 @@ class CreateRoutesTable extends Migration
             $table->index('external_id');
             $table->string("invitation_code");
             $table->string("title");
-            $table->timestamp('start_timestamp');
-            $table->timestamp("end_timestamp");
+            $table->timestamp('start_timestamp')->nullable();
+            $table->timestamp("end_timestamp")->nullable();
             $table->timestamps();
           
 		

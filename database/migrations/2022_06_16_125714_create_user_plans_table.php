@@ -26,8 +26,8 @@ class CreateUserPlansTable extends Migration
             $table->double('renewal_price');
             $table->boolean('requires_invoice');
             $table->integer('status');
-            $table->timestamp('created');
-            $table->timestamp('modified');
+            $table->timestamp('created')->nullable();
+            $table->timestamp('modified')->nullable();
             $table->integer('financiation');
             $table->integer('status_financiation');
             $table->string('language');

@@ -18,7 +18,7 @@ class CreateDaysDisabledTable extends Migration
             $table->timestamps();
             $table->integer('calendar_id')->unsigned();
             $table->foreign('calendar_id')->references('id')->on('calendar');
-            $table->timestamp("day");
+            $table->timestamp("day")->nullable();
             $table->boolean("enabled");
 
 		

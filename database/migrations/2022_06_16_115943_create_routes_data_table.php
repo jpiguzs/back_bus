@@ -22,8 +22,8 @@ class CreateRoutesDataTable extends Migration
             $table->foreign("calendar_id")->references('id')->on("calendar");
             $table->string("vinculation_route")->nullable();
 		    $table->boolean("route_circular");
-            $table->timestamp("date_init");
-            $table->timestamp("date_finish");
+            $table->timestamp("date_init")->nullable();
+            $table->timestamp("date_finish")->nullable();
             $table->boolean("mon"); 
             $table->boolean("tue");
             $table->boolean("wed");
