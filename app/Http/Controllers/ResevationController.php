@@ -11,12 +11,11 @@ class ResevationController extends Controller
         $reservations = Reservation::whereHas('UserPlan',function ($query) use ($user_id) {
             return $query->where('user_id',$user_id);
         }
-        
+
         )->where( function($query) use ($request){
             $from = isset($request->from) ? date($request->from): null;
             $to =  isset($request->to)?  date($request->to) : null;
             $date= isset($request->date) ?  date($request->date) : null;
-            echo $to;
             if(is_null($date)){
                 if(is_null($to) or is_null($from)){
                     return;
@@ -27,11 +26,16 @@ class ResevationController extends Controller
                 return $query->where('reservation_start', $date);
             
             }
-               
-           
-            // return $query->whereBetween('reservation_start',[$from, $to]);
-            
-        })->get();
+        })->where(
+            function($query) use ($request){
+               $routes_ids = isset($request->routes_ids) ?  json_decode($request->routes_ids) : null;
+               if(is_null($routes_ids)){
+                return;
+               } else{
+                $query->whereIn('routes_id', $routes_ids);
+               }
+            }
+        )->get();
         return response()->json($reservations, 200 );
 
     }
